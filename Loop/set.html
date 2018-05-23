@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Array</title>
+	</head>
+	<body>
+		<script src="set.js"></script>
+		<script src="setOperation.js"></script>
+		<h1>Let's Play a game</h1>
+		<h3>SELECT NAMES</h3>
+		<form>
+			<p>List A</p>
+			<ul>
+				<li><input type="checkbox" name="listA" value="Alpha">Alpha</li>
+				<li><input type="checkbox" name="listA" value="Bravo">Bravo</li>
+				<li><input type="checkbox" name="listA" value="Charlie">Charlie</li>
+				<li><input type="checkbox" name="listA" value="Delta">Delta</li>
+				<li><input type="checkbox" name="listA" value="Echo">Echo</li>
+				<li><input type="checkbox" name="listA" value="Foxtrot">Foxtrot</li>
+				<li><input type="checkbox" name="listA" value="Golf">Golf</li>
+			</ul>
+			<p>List B</p>
+			<ul>
+				<li><input type="checkbox" name="listB" value="Echo">Echo</li>
+				<li><input type="checkbox" name="listB" value="Foxtrot">Foxtrot</li>
+				<li><input type="checkbox" name="listB" value="Golf">Golf</li>
+				<li><input type="checkbox" name="listB" value="Hotel">Hotel</li>
+				<li><input type="checkbox" name="listB" value="India">India</li>
+				<li><input type="checkbox" name="listB" value="Juliett">Juliett</li>
+				<li><input type="checkbox" name="listB" value="Kilo">Kilo</li>
+			</ul>
+		</form>
+		<form>	
+			<button type="button" onclick="relativeComplementAtoB()">Relative Complement A</button><br>
+			<div id="relativeComplementAtoB"></div><br>
+			<button type="button" onclick="relativeComplementBtoA()">Relative Complement B</button><br>
+			<div id="relativeComplementBtoA"></div><br>
+			<button type="button" onclick="symmetricDifference()">Symmetric Difference</button><br>
+			<div id="symmetricDifference"></div><br>
+			<button type="button" onclick="intersection()">Intersection</button><br>
+			<div id="intersection"></div><br>
+			<button type="button" onclick="union()">Union</button><br>
+			<div id="union"></div><br>
+			<button type="button" onclick="resetElements()">Reset</button>
+		</form>
+	</body>
+</html>
