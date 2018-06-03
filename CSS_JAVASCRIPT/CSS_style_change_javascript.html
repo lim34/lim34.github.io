@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .class {font-family: arial; font-size: 40px; color: rosybrown; }
+        </style>
+    </head>
+    <body>
+        <h1>CSS Style change through JavaScript!</h1>
+        <div class="class">
+            <p>This is a perfect description of what the original class should look like.</p>
+        </div>
+        <div class="class">
+            <p>We will go ahead and change this one possibly with a button</p>
+        </div>
+        <input type="button" value="Change this text style!" onclick="changeFirst()">
+        <input type="button" value="Back to the original style!" onclick="revertFirst()" style="margin: 0px 0px 0px 3px;">
+        <div class="class">
+            <p>Here's another one you could change</p>
+        </div>
+        <input type="button" value="Change this text style!" onclick="changeSecond()">
+        <input type="button" value="Back to the original style!" onclick="revertSecond()" style="margin: 0px 0px 0px 3px;">
+        <div class="class">
+            <p>Maybe the last one to change individually?</p><br><br><br>
+        </div>
+        <input type="button" value="Change this text style!" onclick="changeThird()">
+        <input type="button" value="Back to the original style!" onclick="revertThird()" style="margin: 0px 0px 0px 3px;">    
+        <p style="font-size: 100px;">Lastly, just go ahead and change them all!</p>
+        <input type="button" value="Change Everything!" onclick="changeAll()" style="width: 20em; height: 5em;">
+        <input type="button" value="Back to the original style!" onclick="revertAll()" style="margin: 0px 0px 0px 10px; width: 20em; height: 5em;">
+        <script>
+            function changeFirst() {
+                var mod = document.getElementsByClassName("class")[1];
+                mod.style.cssText = "font-size: 100px; color: red; background-color: black;";
+            }
+            
+            function revertFirst() {
+                var mod = document.getElementsByClassName("class")[1];
+                mod.style.cssText = "";
+            }
+            
+            function changeSecond() {
+                var mod = document.getElementsByClassName("class")[2];
+                mod.style.cssText = "text-align: center; font-family: courier; border: solid black 2px; margin: 40px;";
+            }
+            
+            function revertSecond() {
+                var mod = document.getElementsByClassName("class")[2];
+                mod.style.cssText = "";
+            }
+            
+            function changeThird() {
+                var mod = document.getElementsByClassName("class")[3];
+                mod.style.cssText = "background-image: url(\"banff.jpg\"); background-size: 400px 270px; background-attachment: fixed; background-position: center; ";
+            }
+            
+            function revertThird() {
+                var mod = document.getElementsByClassName("class")[3];
+                mod.style.cssText = "";
+            }
+            
+            function changeAll() {
+                var mod = document.getElementsByClassName("class");
+                for(var i=0; i < mod.length; i++)
+                {
+                    mod[i].style.cssText = "font-size: 100px; color: red; background-color: black; text-align: center; font-family: courier; border: solid black 2px; margin: 40px; background-image: url(\"banff.jpg\"); background-size: 400px 210px; background-attachment: fixed; background-position: center; "
+                }
+            }
+            
+            function revertAll() {
+                var mod = document.getElementsByClassName("class");
+                for(var i=0; i < mod.length; i++)
+                {
+                    mod[i].style.cssText = "";
+                }
+            }
+        </script>
+
+    </body>
+</html>
