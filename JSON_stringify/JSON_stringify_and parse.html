@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create JSON string from a JavaScript array.</h2>
+
+<form>
+    Name: <input type="text" id="name" style="margin: 2px"><br>
+    Age: <input type="Number" id="age" style="margin: 2px 2px 2px 13px"><br>
+    City: <input type="text" id="city" style="margin: 2px 2px 2px 12px"><br><br>
+    <input type=button value="Generate" onclick="load()"><br>
+</form><br>    
+    
+<p id="demo"></p>
+<p id="demo2" style="font-family: Arial;"></p>
+<p id="demo3" style="font-family: Arial;"></p>
+<script>
+    
+var arr = [ "John", "Peter", "Sally", "Jane" ];
+var myJSON = JSON.stringify(arr);
+    document.getElementById("demo").innerHTML = myJSON;
+    
+ function load() {
+var arr2 = '{"name":"' + document.getElementById("name").value + '", "age":"' + document.getElementById("age").value + '", "city":"' + document.getElementById("city").value + '"}';
+var obj = JSON.parse(arr2);
+document.getElementById("demo2").innerHTML = "Name: " + obj.name + "<br>" + "Age: " + obj.age + "<br>" + "City: " + obj.city + "<br>";
+     
+document.getElementById("demo3").innerHTML = "Hello, " + obj.name + ". As of this day, you are " + 
+    obj.age + " years old and you currently reside in " + obj.city + ".";
+     
+alert("Name: " + obj.name + ", Age: " + obj.age + ", City: " + obj.city);
+ }
+
+
+</script>
+
+</body>
+</html>

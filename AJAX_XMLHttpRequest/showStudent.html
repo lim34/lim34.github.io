@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<style>
+table,th,td {
+	border : 1px solid black;
+	border-collapse: collapse;
+}
+th,td {
+	padding: 5px;
+}
+</style>
+<body>
+
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Show Content</button>
+<br><br>
+
+<table id="demo"></p>
+
+<script>
+function loadDoc() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		alert(this.responseText);
+		var response = JSON.parse(xhttp.responseText);
+		var table="<tr><th>ID</th><th>Content</th></tr>";
+		table += "<tr><td>" + response.id + "</td><td>" + response.content + "</td></tr>";
+		
+		document.getElementById("demo").innerHTML = table;
+		}
+	};
+	xhttp.open("GET", "http://rest-service.guides.spring.io/greeting", true);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send();
+		
+}
+
+</script>
+
+</body>
+</html>
