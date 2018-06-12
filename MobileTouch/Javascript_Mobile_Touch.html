@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>DOM touchstart Event</h1>
+
+<p ontouchstart="myFunction1()">Touch This Paragraph for Magic.</p>
+<p id="touchMe">Touch This Paragraph for another Magic.</p>
+<p id="touchMe2">Touch This Paragraph for the last one.</p>
+
+<p><strong>Note:</strong> This example is for touch devices only.</p>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+<script>
+function myFunction1() {
+  document.getElementById("demo1").innerHTML = "Hello World";
+}
+    
+document.getElementById("touchMe").ontouchstart = myFunction2;
+    
+function myFunction2() {
+    document.getElementById("demo2").innerHTML = "Hello Everyone";
+}    
+
+document.getElementById("touchMe2").addEventListener("touchstart", myFunction3);
+    
+function myFunction3() {
+    document.getElementById("demo3").innerHTML = "Hello CIT261";
+}
+</script>
+
+</body>
+</html>
