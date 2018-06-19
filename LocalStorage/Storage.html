@@ -4,23 +4,25 @@
 	<style>
 		body { font-family: Arial; font-size: 15px;}
 		h1 { font-size: 40px; }
-		#result { margin: 10px; }
+		#result, #result2 { margin: 10px; }
 	</style>
 </head>
 <body>
 
 <h1>Local Storage Storing and Retrieving Arrays, Associative Arrays, and Objects</h1><br>
 <h1>Mad Gab Style!</h1><br><br>
-First Name: <input type="text" id="firstname"><br><hr>
-Last Name: <input type="text" id="lastname"><br><hr>
-Age: <input type="text" id="age"><br><hr>
-Major: <input type="text" id="major"><br><hr>
-Hometown: <input type="text" id="hometown"><br><hr>
-Favorite Hobby: <input type="text" id="hobby"><br><hr>
-Pet Name: <input type="text" id="pet"><br><hr>
-Favorite Quote: <br><textarea rows="4" colus="30" id="quote"></textarea><br><hr>
-<input type="button" onclick="myFunc()" value="Generate a sentence!"><br><br>
-<div id="result"></div>
+First Name: <input type="text" id="firstname" required><br><hr>
+Last Name: <input type="text" id="lastname" required><br><hr>
+Age: <input type="text" id="age" required><br><hr>
+Major: <input type="text" id="major" required><br><hr>
+Hometown: <input type="text" id="hometown" required><br><hr>
+Favorite Hobby: <input type="text" id="hobby" required><br><hr>
+Pet Name: <input type="text" id="pet" required><br><hr>
+Favorite Quote: <br><textarea rows="4" colus="30" id="quote" required></textarea><br><hr>
+<input type="button" onclick="myFunc()" value="Generate a sentence!">
+<input type="button" onclick="mySecondFunc()" value="Print a JSON Object!"><br><br>
+<div id="result"></div><hr>
+<div id="result2"></div>
 
 <script>
 // Check browser support
@@ -35,32 +37,66 @@ function myFunc() {
     	var hobby = document.getElementById("hobby").value;
     	var pet = document.getElementById("pet").value;
     	var quote = document.getElementById("quote").value;
-    	localStorage.setItem("lastname", last);
-    	localStorage.setItem("firstname", first);
-    	localStorage.setItem("age", age);
-    	localStorage.setItem("major", major);
-    	localStorage.setItem("hometown", hometown);
-    	localStorage.setItem("hobby", hobby);
-    	localStorage.setItem("pet", pet);
-    	localStorage.setItem("quote", quote);
-    	var person = [];
-		person["firstname"] = localStorage.getItem("firstname");
-		person["lastname"] = localStorage.getItem("lastname");
-		person["age"] = localStorage.getItem("age");
-		person["major"] = localStorage.getItem("major");
-		person["hometown"] = localStorage.getItem("hometown");
-		person["hobby"] = localStorage.getItem("hobby");
-		person["pet"] = localStorage.getItem("pet");
-		person["quote"] = localStorage.getItem("quote");
-    	// Retrieve
-    	document.getElementById("result").innerHTML = 'There once lived a clown named ' + person["firstname"] + ' ' + person["lastname"] + ".<br>" 
-    	+ "The clown was only " + person["age"] + " years old but was very wise and clever, especially in " + person["major"] + ".<br>"
-    	+ "The clown was well-known in " + person["hometown"] + " for " + person["hobby"] + " which the clown wasn't so great at.<br>"
-    	+ "The clown had a sidekick donkey like a disney princess, or Shrek, which was named, " + person["pet"] + ".<br>"
-    	+ "The donkey wouldn't ever shut up. he would just yap all day saying, " + '"' + person["quote"] + '"' + "<br>"
-    	+ "<h2>The End!</h2>";
+    	if(first == "" || last == "" || age == "" || major == "" || hometown == "" 
+    	|| hobby == "" || pet == "" || quote == "")
+    	{
+    		document.getElementById("result").innerHTML = "Please fill out all the fields!";
+    	}
+    	else {
+    		localStorage.setItem("lastname", last);
+    		localStorage.setItem("firstname", first);
+    		localStorage.setItem("age", age);
+    		localStorage.setItem("major", major);
+    		localStorage.setItem("hometown", hometown);
+    		localStorage.setItem("hobby", hobby);
+    		localStorage.setItem("pet", pet);
+    		localStorage.setItem("quote", quote);
+    		var person = [];
+			person["firstname"] = localStorage.getItem("firstname");
+			person["lastname"] = localStorage.getItem("lastname");
+			person["age"] = localStorage.getItem("age");
+			person["major"] = localStorage.getItem("major");
+			person["hometown"] = localStorage.getItem("hometown");
+			person["hobby"] = localStorage.getItem("hobby");
+			person["pet"] = localStorage.getItem("pet");
+			person["quote"] = localStorage.getItem("quote");
+    		// Retrieve
+    		document.getElementById("result").innerHTML = 'There once lived a clown named ' + person["firstname"] + ' ' + person["lastname"] + ".<br>" 
+    		+ "The clown was only " + person["age"] + " years old but was very wise and clever, especially in " + person["major"] + ".<br>"
+    		+ "The clown was well-known in " + person["hometown"] + " for " + person["hobby"] + " which the clown wasn't so great at.<br>"
+    		+ "The clown had a sidekick donkey like a disney princess, or Shrek, which was named, " + person["pet"] + ".<br>"
+    		+ "The donkey wouldn't ever shut up. he would just yap all day saying, " + '"' + person["quote"] + '"' + "<br>"
+    		+ "<h2>The End!</h2>";
+    	}
 	} else {
     	document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+	}
+	
+}
+
+function mySecondFunc() {
+	if (typeof(Storage) !== "undefined") {
+	
+		var first = document.getElementById("firstname").value;
+    	var last = document.getElementById("lastname").value;
+    	var age = document.getElementById("age").value;
+    	var hometown = document.getElementById("hometown").value;
+    	var pet = document.getElementById("pet").value;
+    	if(first == "" || last == "" || age == "" || hometown == "" || pet == "")
+    	{
+    		document.getElementById("result2").innerHTML = "Please fill out all the fields!";
+    	}
+    	else
+    	{
+			var jsonObj = { "number":age, "name":first + " " + last, "team":hometown + " Sharks", "nickname":pet, "season":"fifth" };
+			localStorage.setItem("jsonObj", JSON.stringify(jsonObj));
+	
+			var retrieveObj = JSON.parse(localStorage.getItem("jsonObj"));
+		
+			document.getElementById("result2").innerHTML = "<h2>Introduction</h2><br>His number is " + retrieveObj.number + " and he plays on "
+			+ retrieveObj.team + ". His nickname is " + retrieveObj.nickname + " and it's his " + retrieveObj.season + " season. Please welcome, "
+			+ retrieveObj.name + ".<br>";
+		}
 	}
 }
 

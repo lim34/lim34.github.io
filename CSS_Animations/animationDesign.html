@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+#myDIV {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    -webkit-animation: example 4s infinite; /* Safari 4.0 - 8.0 */
+    animation: example 4s infinite;
+    animation-delay: 1s;
+    animation-direction: reverse
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    -webkit-animation-delay: 1s;
+    -webkit-animation-direction: reverse;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: both;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    0% {background-color: red; left: 0px}
+    50% {background-color: yellow; left: 200px;}
+    100% {background-color: red; left: 0px}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0% {background-color: red; left: 0px}
+    50% {background-color: yellow; left: 200px;}
+    100% {background-color: red; left: 0px}
+}
+    
+@-webkit-keyframes mynewmove {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+}
+
+@keyframes mynewmove {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+}
+</style>
+</head>
+<body>
+
+<p><b>Note:</b> This example does not work in Internet Explorer 9 and earlier versions.</p>
+<p>Click the "Try it" button to change the value of the animation property.</p>
+Original Animation: <button onclick="myFunction()">Play Again!</button>
+
+<br><br>
+
+Changed Animation: <button onclick="myPlayFunction()">Change Animation!</button>
+
+<br><br>
+<button onclick="myPauseFunction()">Pause</button>
+<button onclick="myResumeFunction()">Resume</button>
+
+<p><b>Note:</b> You can pause at any time whether you are playing the original style or the changed animation!</p>
+<div id="myDIV"></div>
+
+<script>
+function myPlayFunction() {
+    var myDiv = document.getElementById("myDIV");
+    myDiv.style.WebkitAnimation = "mynewmove 4s infinite"; // Code for Safari 4.0 - 8.0
+    myDiv.style.animation = "mynewmove 4s infinite";
+    myDiv.style.WebkitAnimationDirection = "alternate-reverse";
+    myDiv.style.animationDirection = "alternate-reverse";
+    myDiv.style.WebkitAnimationPlayState = "running";
+    myDiv.style.animationPlayState = "running";
+}
+    
+function myPauseFunction() {
+    var myDiv = document.getElementById("myDIV");
+    myDiv.style.WebkitAnimationPlayState = "paused";
+    myDiv.style.animationPlayState = "paused";
+}
+
+function myResumeFunction() {
+    var myDiv = document.getElementById("myDIV");
+    myDiv.style.WebkitAnimationPlayState = "running";
+    myDiv.style.animationPlayState = "running";
+}
+function myFunction() {
+    var myDiv = document.getElementById("myDIV");
+    myDiv.style.cssText = '    width: 100px; height: 100px; background-color: red; position: relative; -webkit-animation: example 4s infinite; animation: example 4s infinite; animation-delay: 1s; animation-direction: reverse animation-timing-function: ease-in-out; animation-fill-mode: both; -webkit-animation-delay: 1s; -webkit-animation-direction: reverse; -webkit-animation-timing-function: ease-in-out; -webkit-animation-fill-mode: both;';
+    myDiv.style.WebkitAnimationPlayState = "running";
+    myDiv.style.animationPlayState = "running";
+}
+</script>
+
+</body>
+</html>

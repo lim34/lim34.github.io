@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Manipulation</title>
+        <style>
+            body {font-family: Arial;}
+            #myDiv {color: brown; margin: 2px;}
+            #myList {color: darkgray; margin: 5px;}
+        </style>
+    </head>
+    <body>
+        <h1>DOM Manipulation Using createElement, appendChild, insertBefore etc.</h1>
+        Type text to add to the Div: <input type="text" id="text"><br><br>
+        1. This is where the Div starts!<br><br>
+        <div id="myDiv"></div><hr>
+        2. And this is where the list starts!<br><br>
+        <ul id="myList">
+            <li>I was here first!</li>
+        </ul><br><br><hr>  
+        <button onclick="appendAfter()">Add to the Div</button>
+        <button onclick="appendBefore()">Add to the List in the beginning!</button>
+        <button type="reset" onclick="reset()">Reset Everything!</button>
+        
+        <script>
+            function appendAfter() {
+                var para = document.createElement("P");
+                var text = document.getElementById("text").value;
+                var t = document.createTextNode(text);
+                para.appendChild(t);
+                
+                document.getElementById("myDiv").appendChild(para);
+            }
+            
+            function appendBefore() {
+                var li = document.createElement("LI");
+                var text = document.getElementById("text").value;
+                var t = document.createTextNode(text);
+                li.appendChild(t);
+                
+                var list = document.getElementById("myList");
+                list.insertBefore(li, list.childNodes[0]);
+            }
+            
+            function reset() {
+                document.getElementById("myDiv").innerHTML = "";
+                var list = document.getElementById("myList");
+                for(var i=0; i < list.childNodes.length; i++)
+                {
+                    list.childNodes[i].innerHTML = "";        
+                }
+                list.innerHTML = "";
+                document.getElementById("text").value = "";
+                var li = document.createElement("LI");
+                var t = document.createTextNode("I was here first!");
+                li.appendChild(t);
+                var list = document.getElementById("myList");
+                list.appendChild(li);
+            }
+        </script>
+    </body>
+</html>

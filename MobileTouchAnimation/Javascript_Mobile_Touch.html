@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<style>
+		a { margin: 10px; }
+	</style>
+</head>
 <body>
 
 <h1>DOM touchstart Event</h1>
 
-<p ontouchstart="myFunction1()">Touch This Paragraph for Magic.</p>
-<p id="touchMe">Touch This Paragraph for another Magic.</p>
-<p id="touchMe2">Touch This Paragraph for the last one.</p>
+<a href="#demo1" ontouchstart="myFunction1()" ontouchend="reset1()" ontouchmove="move()" ontouchcancel="cancel()">Touch This Paragraph for Magic.</a><br><br>
+<a href="#demo2" id="touchMe">Touch This Paragraph for another Magic.</a><br><br>
+<a href="#demo3" id="touchMe2">Touch This Paragraph for the last one.</a><br><br>
 
 <p><strong>Note:</strong> This example is for touch devices only.</p>
 
@@ -16,19 +21,49 @@
 
 <script>
 function myFunction1() {
-  document.getElementById("demo1").innerHTML = "Hello World";
+  document.getElementById("demo1").innerHTML = "Hello World<br>";
+  document.getElementById("demo1").innerHTML += "<img src=\"pic50.jpg\" alt=\"me\" height=\"42\" width=\"100\"><br>"; 
 }
     
 document.getElementById("touchMe").ontouchstart = myFunction2;
+document.getElementById("touchMe").ontouchend = reset2;
+document.getElementById("touchMe").ontouchmove = move;
+document.getElementById("touchMe").ontouchcancel = cancel;
     
 function myFunction2() {
-    document.getElementById("demo2").innerHTML = "Hello Everyone";
+    document.getElementById("demo2").innerHTML = "Hello Everyone<br>";
+    document.getElementById("demo2").innerHTML += "<img src=\"gif.gif\" alt=\"me\" height=\"42\" width=\"100\"><br>";
 }    
 
 document.getElementById("touchMe2").addEventListener("touchstart", myFunction3);
+document.getElementById("touchMe2").addEventListener("touchend", reset3);
+document.getElementById("touchMe2").addEventListener("touchmove", move);
+document.getElementById("touchMe2").addEventListener("touchcancel", cancel);
     
 function myFunction3() {
-    document.getElementById("demo3").innerHTML = "Hello CIT261";
+    document.getElementById("demo3").innerHTML = "Hello CIT261<br>";
+    document.getElementById("demo3").innerHTML += "The answer is: 256!";
+}
+
+function reset1() {
+	document.getElementById("demo1").innerHTML = "";
+}
+
+function reset2() {
+	document.getElementById("demo2").innerHTML = "";
+}
+
+function reset3() {
+	document.getElementById("demo3").innerHTML = "";
+}
+
+function move() {
+	alert("I can see you moving your finger across!");
+	alert("Nice attempt but that won't work here!");
+}
+
+function cancel() {
+	alert("Too many things going on right now!");
 }
 </script>
 
