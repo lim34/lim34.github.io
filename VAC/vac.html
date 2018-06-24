@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VAC</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		.jumbotron { text-align: center; background: purple; }
+		#video { text-align: center; }
+		hr { border-width: 5px; }
+	</style>
+</head>
+<body>
+	<div class="jumbotron">
+		<h1>Have you seen "Big Buck Bunny"?</h1>
+	</div>
+	<div class="container" id="video">
+		<h3>1. Big Buck Bunny</h3><br>
+		<video width="480" height="320" controls>
+			<source src="movie.mp4" type="video/mp4">
+			<source src="movie.ogg" type="video/ogg">
+			Your browser does not support the video tag.
+		</video><br>
+		<h3>Here's the one on loop</h3>
+		<video width="480" height="320" controls loop>
+			<source src="movie.mp4" type="video/mp4">
+			<source src="movie.ogg" type="video/ogg">
+			Your browser does not support the video tag.
+		</video><br>
+		<h3>Here's the one muted</h3>
+		<video width="480" height="320" controls muted>
+			<source src="movie.mp4" type="video/mp4">
+			<source src="movie.ogg" type="video/ogg">
+			Your browser does not support the video tag.
+		</video><br>
+		<h3>Here's the one that preloads</h3>
+		<video width="480" height="320" controls preload="auto">
+		//auto is when the author thinks that the browser should load the entire audio file when the page loads.
+		//metadata is when the author thinks that the browser should load only metadata when the page loads.
+		//none is when the author thinks that the browser should NOT load the audio file when the page loads
+			<source src="movie.mp4" type="video/mp4">
+			<source src="movie.ogg" type="video/ogg">
+			Your browser does not support the video tag.
+		</video><br><br>
+		<hr>
+		<h3>2. Static noise time</h3><br>
+		<audio controls>
+  			<source src="audio.mp3" type="audio/mpeg">
+  			<source src="audio.ogg" type="audio/ogg">
+  			Your browser does not support the audio tag.
+		</audio><br>
+		<h3>Here's the one on loop</h3><br>
+		<audio controls loop>
+			<source src="audio.mp3" type="audio/mpeg">
+  			<source src="audio.ogg" type="audio/ogg">
+  			Your browser does not support the audio tag.
+		</audio><br>
+		<h3>Here's the one muted</h3><br>
+		<audio controls muted>
+			<source src="audio.mp3" type="audio/mpeg">
+  			<source src="audio.ogg" type="audio/ogg">
+  			Your browser does not support the audio tag.
+		</audio><br>
+		<h3>Lastly, Here's the one that preloads</h3><br>
+		<audio controls preload="auto">
+		//auto is when the author thinks that the browser should load the entire audio file when the page loads.
+		//metadata is when the author thinks that the browser should load only metadata when the page loads.
+		//none is when the author thinks that the browser should NOT load the audio file when the page loads
+  			<source src="audio.mp3" type="audio/mpeg">
+  			<source src="audio.ogg" type="audio/ogg">
+  			Your browser does not support the audio tag.
+		</audio><br><br>
+		<hr>
+		<canvas id="myCanvas"></canvas><br>
+		<input type="button" onclick="myFunction()" value="Fill the canvas!">
+	</div>
+<script>
+	function myFunction() {
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		ctx.fillStyle = "purple";
+		ctx.fillRect(100, 100, 100, 100);
+		ctx.lineWidth=10;
+		ctx.stokeStyle="red";
+		ctx.strokeRect(100, 100, 100, 100);
+		ctx.shadowBlur=20;
+		ctx.shadowColor="black";
+		ctx.shadowOffsetX=20;
+		ctx.shadowOffsetY=20;
+		ctx.font="30px Arial";
+		var gradient=ctx.createLinearGradient(0,0,canvas.width,0);
+		gradient.addColorStop("0","magenta");
+		gradient.addColorStop("0.5","blue");
+		gradient.addColorStop("1.0","red");
+		ctx.fillStyle=gradient;
+		ctx.fillText("Hello Everyone!",20,50);
+	}
+</script>
+</body>
+</html>
