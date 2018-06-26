@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .container, .jumbotron {
+            text-align: center;
+            
+        }
+        
+        .jumbotron {
+            background-color: cornflowerblue;
+        }
+        
+        #first:hover {
+            font-size: 50px;
+        }
+        #second:active {
+            color:crimson;
+        }
+        #third:focus {
+            width: 200px;
+            height: 25px;
+            border-radius: 25px;
+            background-color: yellow;
+        }
+        #fourth:checked {
+            width: 30px;
+            height: 30px;
+        }
+        
+        #fifth:disabled {
+            background-color: gray;
+        }
+        
+        @keyframes move {
+        0%   {background-color:red; left:0px; top:0px;}
+        25%  {background-color:yellow; left:200px; top:0px;}
+        50%  {background-color:blue; left:200px; top:200px;}
+        75%  {background-color:green; left:0px; top:200px;}
+        100% {background-color:red; left:0px; top:0px;}
+        }
+        
+        input[type=button]
+        {
+            margin: 5px;
+        }
+        
+        #seventh {
+            width: 150px;
+            height: 80px;
+            background-color: black;
+            border-radius: 25px;
+        }
+        
+        #seventh:hover {
+            transform: scale(3);
+            transition: all 2s ease-in-out;
+        }
+        
+    </style>
+    <title>CSS Transition and Animations</title>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>CSS Transitions, Transformation and Animations!</h1>
+    </div>
+    <div class="container">   
+        <p id="first">1. Hover your mouse to change the text size!</p>
+        <a id="second" href="#second">2. Click on this link to change the color!</a><br><br>
+        <p>3. Click inside the text fields to see the style change!<br>
+            Type your full name: <input type="text" id="third">
+        </p><br>
+        <p>4. Check the buttons to see the style change!<br></p>
+        <form action="">
+            <input type="radio" id="fourth" name="gender" value="male">Male<br>
+            <input type="radio" id="fourth" name="gender" value="female">Female<br>
+            <input type="checkbox" id="fourth">I will get an A in the class<br>
+            <input type="checkbox" id="fourth">I will fail the class<br>
+        </form><br>
+        <p>5. Styles change for enabled and disabled fields!<br>
+            First name: <input type="text" id="fifth"><br>
+            Last name: <input type="text" id="fifth" disabled="disabled"><br>
+        </p><br>
+        <div class="container" id="sixth">
+        </div>
+        <p><strong>* Before clicking transition, make sure to go through all five fields above to see the original style.</strong></p>
+        <input type="button" value="Transition!" onclick="myFunc1()"><br><br>
+        <input type="button" value="Animation!" onclick="myFunc2()"><input type="button" value="Pause!" onclick="myFunc3()">
+        <input type="button" value="Reset!" onclick="reset()"><br><br>
+        <div class="container" id="seventh">
+        </div><br><br>
+        <input type="button" value="Transform One!" onclick="myFunc4()">
+        <input type="button" value="Transform Two!" onclick="myFunc5()">
+        <input type="button" value="Transform Three!" onclick="myFunc6()">
+        <input type="button" value="Transform Four!" onclick="myFunc7()">
+        <input type="button" value="Reset!" onclick="reset2()">
+    </div>
+    <script>
+        function myFunc1() {
+            document.getElementById("first").style.transition = "all 2s ease-in";
+            document.getElementById("third").style.transition = "all 2s ease-in-out";
+            document.getElementById("fourth").style.transition = "all 2s cubic-bezier(0, 0, 1, 1)";
+        }
+        
+        function myFunc2() {
+            var sixth = document.getElementById("sixth");
+            sixth.style.width = "100px";
+            sixth.style.height = "100px";
+            sixth.style.position = "relative";
+            sixth.style.backgroundColor = "purple";
+            sixth.style.animation = "move 4s infinite";
+            sixth.style.animationDirection = "alternate-reverse"; 
+        }
+        
+        function myFunc3() {
+            var sixth = document.getElementById("sixth");
+            sixth.style.animationPlayState = "paused";
+        }
+        
+        function reset() {
+            var sixth = document.getElementById("sixth");
+            sixth.style = "";
+        }
+        
+        function myFunc4() {
+            var seventh = document.getElementById("seventh");
+            seventh.style.transform = "rotate(45deg)";
+            seventh.style.transition = "all 2s ease-in";
+        }
+        
+        function myFunc5() {
+            var seventh = document.getElementById("seventh");
+            seventh.style.transform = "skewY(30deg)";
+            seventh.style.transition = "all 2s ease-in";
+        }
+        
+        function myFunc6() {
+            var seventh = document.getElementById("seventh");
+            seventh.style.transform = "translateX(100px)";
+            seventh.style.transform += "translateY(200px)";
+            seventh.style.transition = "all 2s ease-in";
+        }
+        
+        function myFunc7() {
+            var seventh = document.getElementById("seventh");
+            seventh.style.transform = "rotateX(180deg)";
+            seventh.style.transform += "rotateY(180deg)";
+            seventh.style.transform += "rotateZ(90deg)";
+            seventh.style.transition = "all 2s ease-in";
+        }
+        
+        function reset2() {
+            var seventh = document.getElementById("seventh");
+            seventh.style = "width: 150px; height: 80px; background-color: black; border-radius: 25px;";
+        }
+    </script>
+</body>
+</html>
