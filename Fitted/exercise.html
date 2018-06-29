@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="main.css">
+        <title>Fitted - To do || Your workout app</title>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1 id="title"><strong>Fitted - Your Workout App</strong></h1>
+        </div>
+        <div id="navbar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="navbar-nav">
+                  <a class="nav-item nav-link" id="nav" href="index.html">Home</a>
+                  <a class="nav-item nav-link" id="nav" href="todo.html">To-Do List</a>
+                  <a class="nav-item nav-link" id="nav" href="exercise.html">Exercises</a>
+                  <a class="nav-item nav-link" id="nav" href="#">Disabled</a>
+                </div>
+            </nav>
+        </div>
+        <div class="container">
+        	<h1>Exercises</h1><br>
+        	<input type="button" ontouchend="loadDoc()" value="Show Exercises!">
+			<br><br>
+
+			<table id="demo"></table>
+
+        </div>
+        <script>
+        function loadDoc() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var response = JSON.parse(xhttp.responseText);
+					var table="<tr><th>ID</th><th>Name</th><th>Description</th></tr>";
+					var results = response.results;
+					for(var i=0; i < results.length; i++)
+					{
+						table += "<tr><td>" + results[i].category.id + "</td><td>" + results[i].category.name + "</td><td>" + results[i].description + "</td></tr>";
+					}
+		
+					document.getElementById("demo").innerHTML = table;
+				}
+			};
+	
+			xhttp.open("GET", "https://wger.de/api/v2/exerciseinfo/", true);
+			xhttp.setRequestHeader("Content-type", "application/json");
+			xhttp.send();
+		
+		}
+        </script>
+    </body>
+    <footer class="page-footer font-small blue pt-4 mt-4">
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="#">Fitted LLC.</a><br><br>
+        </div>
+    </footer>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="main.css">
+        <title>Fitted - To do || Your workout app</title>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1 id="title"><strong>Fitted - Your Workout App</strong></h1>
+        </div>
+        <div id="navbar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="navbar-nav">
+                  <a class="nav-item nav-link" id="nav" href="index.html">Home</a>
+                  <a class="nav-item nav-link" id="nav" href="todo.html">To-Do List</a>
+                  <a class="nav-item nav-link" id="nav" href="exercise.html">Exercises</a>
+                  <a class="nav-item nav-link" id="nav" href="#">Disabled</a>
+                </div>
+            </nav>
+        </div>
+        <div class="container">
+            <h1>First thing you want to do is make a list of work outs you are going to do for the day!</h1><br>
+            <h4>* You want something else to be your top priority? try our "Add at the Top" feature!</h4>
+            <h3>Write your list here: </h3><br>
+            
+            <input type="text" id="iList"><br><br>
+            <input type="button" ontouchend="addAfter()" value="Add to the List">
+            <input type="button" ontouchend="addBefore()" value="Add at the Top"><br><br>
+            <ol id="myList"></ol><br>
+            <h3>Done with creating your list? Store it so you can see it anywhere!</h3>
+            <input type="button" ontouchend="store()" value="Store your list!"><br>
+            <p id="complete"></p><br><br>
+        </div>
+        <div class="container" id="checkList">
+        	<h3>Now let's get your list so you can check them!</h3>
+        	<h3>Check them off if you are done with an item of your list!</h3>
+        	<input type="button" ontouchend="getStored()" value="Show my List"><br><br>
+        </div>
+        <script>
+            function addAfter() {
+                var listItem = document.createElement("LI");
+                var t = document.getElementById("iList").value;
+                var text = document.createTextNode(t);
+                listItem.appendChild(text);
+                document.getElementById("myList").appendChild(listItem);
+                document.getElementById("iList").value = "";
+            }
+            
+            function addBefore() {
+                var listItem = document.createElement("LI");
+                var t = document.getElementById("iList").value;
+                var text = document.createTextNode(t);
+                listItem.appendChild(text);
+                
+                var list = document.getElementById("myList")
+                list.insertBefore(listItem, list.childNodes[0]);
+                document.getElementById("iList").value = "";
+            }
+            
+            function store() {
+                var list = document.getElementById("myList");
+                
+                for(var i=0; i < list.childNodes.length; i++)
+                {
+                    localStorage.setItem("listItem" + (i + 1), list.childNodes[i].innerHTML);
+                    console.log(list.childNodes[i].innerHTML);
+                }
+                
+                document.getElementById("complete").innerHTML = "<br><br>Yay! your list has been stored!";
+                console.log(localStorage.length);
+                console.log(list.childNodes.length);
+            }
+            
+            function getStored() {	
+            	var list = document.getElementById("myList");
+            	
+            	for(var i=0; i < list.childNodes.length; i++)
+            	{
+            		var check = document.createElement("INPUT");
+            		check.setAttribute("type", "checkbox");
+            		check.setAttribute("id", "checkbox" + (i + 1));
+            		check.setAttribute("ontouchend", "disappear(checkbox" + (i + 1) + ".id, label" + (i + 1) + ".id)");
+            		var label = document.createElement("LABEL");
+            		label.setAttribute("id", "label" + (i + 1));
+            		var t = localStorage.getItem("listItem" + (i + 1));
+            		var text = document.createTextNode(t);
+            		label.appendChild(text);
+            		
+            		document.getElementById("checkList").appendChild(check);
+            		document.getElementById("checkList").appendChild(label);
+            		document.getElementById("checkList").innerHTML += "<br>";
+            	}
+            }
+            
+            function disappear(checkid, labelid) {
+            	var box = document.getElementById(checkid);
+            	var label = document.getElementById(labelid);
+            	box.parentNode.removeChild(box);
+            	label.parentNode.removeChild(label);
+            }
+        </script>
+    </body>
+    <footer class="page-footer font-small blue pt-4 mt-4">
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="#">Fitted LLC.</a>
+        </div><br><br>
+    </footer>
+</html>
