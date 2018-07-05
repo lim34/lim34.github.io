@@ -15,7 +15,7 @@
                   <a class="nav-item nav-link" id="nav" href="index.html">Home</a>
                   <a class="nav-item nav-link" id="nav" href="todo.html">To-Do List</a>
                   <a class="nav-item nav-link" id="nav" href="exercise.html">Exercises</a>
-                  <a class="nav-item nav-link" id="nav" href="#">Disabled</a>
+                  <a class="nav-item nav-link" id="nav" href="motivation.html">Motivation</a>
                 </div>
             </nav>
         </div>
@@ -25,6 +25,7 @@
 			<br><br>
 
 			<table id="demo"></table>
+            <div id="demo2"></div>
 
         </div>
         <script>
@@ -33,6 +34,7 @@
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
 					var response = JSON.parse(xhttp.responseText);
+                    console.log("Here is the JSON result from the RESTful API: ", JSON.stringify(xhttp.responseText));
 					var table="<tr><th>ID</th><th>Name</th><th>Description</th></tr>";
 					var results = response.results;
 					for(var i=0; i < results.length; i++)
@@ -41,6 +43,12 @@
 					}
 		
 					document.getElementById("demo").innerHTML = table;
+                    document.getElementById("demo2").innerHTML = "<br><br>";
+                    var btn = document.createElement("INPUT");
+                    btn.setAttribute("type", "button");
+                    btn.setAttribute("ontouchend", "changeCSSStyle()");
+                    btn.setAttribute("value", "Change Table Style!");
+                    document.getElementById("demo2").appendChild(btn);
 				}
 			};
 	
@@ -49,6 +57,31 @@
 			xhttp.send();
 		
 		}
+            
+        function changeCSSStyle() {
+            var tbl = document.getElementById("demo");
+            var tr = document.getElementsByTagName("TR");
+            var td = document.getElementsByTagName("TD");
+            var th = document.getElementsByTagName("TH");
+            tbl.style.border = "5px solid darkblue"; 
+            for(var i=0; i < tr.length; i++)
+            {
+                tr[i].style.border = "5px solid darkblue";
+                tr[i].style.transition = "border 1s";
+            }
+            for(var i=0; i < td.length; i++)
+            {
+                td[i].style.border = "5px solid darkblue";
+                td[i].style.transition = "border 1s";
+            }
+            for (var i=0; i < th.length; i++)
+            {
+                th[i].style.border = "5px solid darkblue";
+                th[i].style.transition = "border 1s";
+            }
+            tbl.style.fontSize = "18px";
+            tbl.style.transition = "border 1s";
+        }
         </script>
     </body>
     <footer class="page-footer font-small blue pt-4 mt-4">
